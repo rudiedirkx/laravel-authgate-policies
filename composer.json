@@ -18,8 +18,8 @@
         "laravel": {
             "providers": [
                 "rdx\\authgate\\PoliciesServiceProvider"
-            ],
-        },
+            ]
+        }
     },
     "require": {}
 }
