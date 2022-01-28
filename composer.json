@@ -14,12 +14,5 @@
             "rdx\\authgate\\": "src/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "rdx\\authgate\\PoliciesServiceProvider"
-            ]
-        }
-    },
     "require": {}
 }
