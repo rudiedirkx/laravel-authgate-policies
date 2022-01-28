@@ -1,0 +1,25 @@
+{
+    "name": "rdx/laravel-authgate-policies",
+    "description": "Takes abilities from a list of policy classes.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rudie Dirkx",
+            "email": "github@hotblocks.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "rdx\\authgate\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "rdx\\authgate\\PoliciesServiceProvider"
+            ],
+        },
+    },
+    "require": {}
+}
