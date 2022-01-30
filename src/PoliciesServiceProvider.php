@@ -6,27 +6,31 @@ use Illuminate\Support\ServiceProvider;
 
 class PoliciesServiceProvider extends ServiceProvider {
 
-  protected $policies = [];
-  protected $useCache = true;
-  protected $disableGuessPolicyNames = true;
-  protected $cacheStoragePath = 'framework/abilities.php';
+	protected $policies = [];
+	protected $useCache = true;
+	protected $disableGuessPolicyNames = true;
+	protected $cacheStoragePath = 'framework/abilities.php';
 
-  public function register() {
-    $this->app->singleton(PoliciesService::class);
-  }
+	public function register() {
+		$this->app->singleton(PoliciesService::class);
 
-  public function boot(PoliciesService $policies) {
-    // $t = microtime(1);
+		$this->commands([
+			PoliciesCommand::class,
+		]);
+	}
 
-    if ($this->disableGuessPolicyNames) {
-      $policies->disableGuessPolicyNames();
-    }
+	public function boot(PoliciesService $policies) {
+		// $t = microtime(1);
 
-    $policies->setCachePath(storage_path($this->cacheStoragePath));
-    $policies->setClasses($this->policies);
-    $policies->defineAbilities($this->useCache);
+		if ($this->disableGuessPolicyNames) {
+			$policies->disableGuessPolicyNames();
+		}
 
-    // $t = 1000 * (microtime(1) - $t);
-  }
+		$policies->setCachePath(storage_path($this->cacheStoragePath));
+		$policies->setClasses($this->policies);
+		$policies->defineAbilities($this->useCache);
+
+		// $t = 1000 * (microtime(1) - $t);
+	}
 
 }
