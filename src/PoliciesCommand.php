@@ -10,10 +10,19 @@ class PoliciesCommand extends Command {
 		{--if-cached : Only cache if currenly cached}
 		{--status : Show cached status}
 		{--clean : Remove cache}
+		{--list : List LIVE abilities}
 	';
 	protected $description = "Show, cache or clean policies' abilities";
 
 	protected $policies;
+
+	protected function handleList() {
+		$abilities = $this->policies->getLiveAbilities();
+		ksort($abilities);
+		foreach ($abilities as $ability => $callback) {
+			$this->line("- $ability: $callback");
+		}
+	}
 
 	protected function handleStatus() {
 		if ($this->policies->isCached()) {
@@ -59,6 +68,9 @@ class PoliciesCommand extends Command {
 		}
 		elseif ($this->option('clean')) {
 			return $this->handleClean();
+		}
+		elseif ($this->option('list')) {
+			return $this->handleList();
 		}
 		else {
 			return $this->handleCache();
