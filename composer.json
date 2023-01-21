@@ -14,5 +14,7 @@
             "rdx\\authgate\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "php": "^8.0"
+    }
 }

@@ -73,6 +73,10 @@ class PoliciesService {
 	}
 
 	protected function getAbilityName(ReflectionMethod $method) : string {
+		$attributes = $method->getAttributes(AbilityName::class);
+		if (count($attributes)) {
+			return $attributes[0]->newInstance()->name;
+		}
 		return Str::kebab(str_replace('_', '-', $method->getName()));
 	}
 
